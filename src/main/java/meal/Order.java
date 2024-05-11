@@ -1,8 +1,6 @@
 package meal;
 
-import service.Customer;
-import service.Driver;
-import service.Restaurant;
+import service.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +14,13 @@ public class Order {
     private int orderPickedUpTimeInHrs;
     private int orderDeliveredTimeInHrs;
 
-    public Order(Restaurant fromRestaurant, Customer fromCusomter, int givenOrderCreationTime_Hrs)
+    public Order(Restaurant fromRestaurant, Customer fromCusomter)
     {
         this.restaurantOfOrigin = fromRestaurant;
         this.recievingCustomer = fromCusomter;
-        this.orderCreationTimeInHrs = givenOrderCreationTime_Hrs;
+        this.orderCreationTimeInHrs = this.orderPickedUpTimeInHrs = Time.getTimeInHrs();;
 
-
+        this.driver = CPPFoodDelivery.getInstance().findDriverByCounty(this.recievingCustomer.getCounty());
     }
 
     private List<FoodItem> items = new ArrayList<>();
@@ -41,5 +39,15 @@ public class Order {
 
     public List<FoodItem> getItems() {
         return items;
+    }
+
+    public void pickUpOrder()
+    {
+        this.orderPickedUpTimeInHrs = Time.getTimeInHrs();
+    }
+
+    public void deliverOrder()
+    {
+        this.orderPickedUpTimeInHrs = Time.getTimeInHrs();
     }
 }

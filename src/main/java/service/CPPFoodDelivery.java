@@ -40,6 +40,22 @@ public class CPPFoodDelivery
         drivers.add(driver);
     }
 
+    public Driver findDriverByCounty(String county)
+    {
+        Driver toReturn = null;
+
+        for(Driver driver: this.drivers)
+        {
+            if(driver.getOperatingCounty().equals(county))
+            {
+                toReturn = driver;
+                break;
+            }
+        }
+
+        return toReturn;
+    }
+
     public void printRegistered() {
         System.out.println("Restaurants: ");
         restaurants.forEach(restaurant -> System.out.print(restaurant.getName() + ", "));
