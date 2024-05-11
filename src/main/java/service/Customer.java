@@ -8,8 +8,13 @@ public class Customer {
     private String county;
     private DietPlan dietPlan;
 
-    public Customer(String name, DietPlan dietPlan) {
+    public Customer(String name,
+                    String address,
+                    String county,
+                    DietPlan dietPlan) {
         this.name = name;
+        this.address = address;
+        this.county = county;
         this.dietPlan = dietPlan;
     }
 

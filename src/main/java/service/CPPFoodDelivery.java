@@ -1,28 +1,56 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CPPFoodDelivery
 {
-    public List<Restaurant> restaurants;
-    public List<Customer> customers;
-    public List<Driver> drivers;
+    //singleton
+    private static CPPFoodDelivery instance;
 
-    //singleton?
+    public static CPPFoodDelivery getInstance() {
+        if (instance == null) {
+            instance = new CPPFoodDelivery();
+        }
+        return instance;
+    }
+
+    private List<Restaurant> restaurants;
+    private List<Customer> customers;
+    private List<Driver> drivers;
+
+    private CPPFoodDelivery() {
+        restaurants = new ArrayList<>();
+        customers = new ArrayList<>();
+        drivers = new ArrayList<>();
+    }
 
     public void registerRestaurant(Restaurant restaurant)
     {
-        //TODO
+        restaurants.add(restaurant);
     }
 
     public void registerCustomer(Customer customer)
     {
-        //TODO
+        customers.add(customer);
     }
 
     public void registerDriver(Driver driver)
     {
-        //TODO
+        drivers.add(driver);
     }
 
+    public void printRegistered() {
+        System.out.println("Restaurants: ");
+        restaurants.forEach(restaurant -> System.out.print(restaurant.getName() + ", "));
+        System.out.println();
+
+        System.out.println("Customers: ");
+        customers.forEach(customer -> System.out.print(customer.getName() + ", "));
+        System.out.println();
+
+        System.out.println("Drivers: ");
+        drivers.forEach(driver -> System.out.print(driver.getName() + ", "));
+        System.out.println();
+    }
 }

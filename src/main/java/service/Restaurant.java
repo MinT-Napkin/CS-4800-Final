@@ -4,7 +4,7 @@ public class Restaurant
 {
     private String name;
     private String address;
-    private String country;
+    private String county;
     private int openingHour;
     private int closingHour;
     private String cuisineType;
@@ -12,12 +12,19 @@ public class Restaurant
 
     public Restaurant(String name,
                       String address,
+                      String county,
                       int openingHour,
                       int closingHour,
                       String cuisineType,
                       FoodMenu menu)
     {
-
+        this.name = name;
+        this.address = address;
+        this.county = county;
+        this.openingHour = openingHour;
+        this.closingHour = closingHour;
+        this.cuisineType = cuisineType;
+        this.menu = menu;
     }
 
     public String getName() {
@@ -29,7 +36,7 @@ public class Restaurant
     }
 
     public String getCountry() {
-        return country;
+        return county;
     }
 
     public int getOpeningHour() {
