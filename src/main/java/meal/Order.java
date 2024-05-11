@@ -16,6 +16,13 @@ public class Order {
     private int orderPickedUpTimeInHrs;
     private int orderDeliveredTimeInHrs;
 
+    public Order(Restaurant fromRestaurant, Customer fromCusomter, int givenOrderCreationTime_Hrs)
+    {
+        this.restaurantOfOrigin = fromRestaurant;
+        this.recievingCustomer = fromCusomter;
+        this.orderCreationTimeInHrs = givenOrderCreationTime_Hrs;
+    }
+
     private List<FoodItem> items = new ArrayList<>();
 
     public void addItem(FoodItem item) {
