@@ -11,13 +11,8 @@ public class Order {
     private Restaurant restaurantOfOrigin;
     private Customer recievingCustomer; // incl. customer name & diet restriction
     private Driver driver;
-
-    /*
-    * something about customer w/ this, not sure if
-    * this attribute is correct with regards to what the
-    * proj. instructions are  asking
-     * */
-    private int orderCreationTimeInHrs;
+    
+    private int orderCreationTimeInHrs; // something abt customer w/ this, not sure if implementaiton is correct
     private int orderPickedUpTimeInHrs;
     private int orderDeliveredTimeInHrs;
 
