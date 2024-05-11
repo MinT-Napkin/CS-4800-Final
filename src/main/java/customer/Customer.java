@@ -1,7 +1,7 @@
 package customer;
 
 
-class Customer {
+public class Customer {
     private String name;
     private DietPlan dietPlan;
 

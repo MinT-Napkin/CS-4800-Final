@@ -39,7 +39,7 @@ public class Fat extends Macronutrient {
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return name;
     }
 

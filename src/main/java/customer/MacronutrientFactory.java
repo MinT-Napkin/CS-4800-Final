@@ -1,5 +1,5 @@
 package customer;
 
-interface MacronutrientFactory {
+public interface MacronutrientFactory {
     Macronutrient returnValidMacronutrient(Customer customer);
 }

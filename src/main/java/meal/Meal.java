@@ -1,7 +1,10 @@
-package customer;
+package meal;
 
-public class Meal
-{
+import customer.*;
+
+public class Meal implements FoodItem {
+
+    private double basePrice;
     private Macronutrient carb;
     private Macronutrient protein;
     private Macronutrient fat;
@@ -17,6 +20,10 @@ public class Meal
         fat = fatsFactory.returnValidMacronutrient(customer);
     }
 
+    public Meal(double basePrice) {
+        this.basePrice = basePrice;
+    }
+
     public Macronutrient getCarb() {
         return carb;
     }
@@ -27,5 +34,10 @@ public class Meal
 
     public Macronutrient getFat() {
         return fat;
+    }
+
+    @Override
+    public double getPrice() {
+        return basePrice;
     }
 }
