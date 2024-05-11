@@ -1,6 +1,7 @@
 package meal;
 
 import customer.*;
+import service.Customer;
 
 public class Meal implements FoodItem {
 

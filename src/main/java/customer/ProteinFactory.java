@@ -1,5 +1,7 @@
 package customer;
 
+import service.Customer;
+
 public class ProteinFactory implements MacronutrientFactory {
     private static ProteinFactory instance;
 

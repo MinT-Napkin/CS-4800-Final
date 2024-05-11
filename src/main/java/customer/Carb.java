@@ -44,7 +44,7 @@ public class Carb extends Macronutrient {
     }
 
     @Override
-    Macronutrient returnRandomMacronutrient() {
+    public Macronutrient returnRandomMacronutrient() {
         Random random = new Random();
         int index = random.nextInt(carbOptions.size());
         name = carbOptions.get(index);
