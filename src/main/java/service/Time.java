@@ -1,14 +1,33 @@
 package service;
 
 public class Time {
-    public static int getTimeInHrs()
+    private static Time instance;
+    private int time;
+
+    private Time()
     {
-        long time = System.currentTimeMillis();
+        this.time = 0;
+    }
 
-        int timeInSeconds = (int) time*100;
-        int timeInMins = timeInSeconds/60;
-        int timeInHrs = timeInMins/60;
+    public static Time getInstance()
+    {
+        if (instance == null)
+        {
+            instance = new Time();
+        }
 
-        return timeInHrs;
+        return instance;
+    }
+
+    public int getTimeInHrs()
+    {
+        if(this.time == 24)
+        {
+            this.time = 0;
+        }else{
+            this.time += 1;
+        }
+
+        return this.time;
     }
 }
