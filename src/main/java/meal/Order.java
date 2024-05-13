@@ -18,7 +18,7 @@ public class Order {
     {
         this.restaurantOfOrigin = fromRestaurant;
         this.recievingCustomer = fromCusomter;
-        this.orderCreationTimeInHrs = this.orderPickedUpTimeInHrs = Time.getTimeInHrs();;
+        this.orderCreationTimeInHrs = this.orderPickedUpTimeInHrs = Time.getInstance().getTimeInHrs();
 
         this.driver = CPPFoodDelivery.getInstance().findDriverByCounty(this.recievingCustomer.getCounty());
     }
@@ -43,11 +43,11 @@ public class Order {
 
     public void pickUpOrder()
     {
-        this.orderPickedUpTimeInHrs = Time.getTimeInHrs();
+        this.orderPickedUpTimeInHrs = Time.getInstance().getTimeInHrs();
     }
 
     public void deliverOrder()
     {
-        this.orderPickedUpTimeInHrs = Time.getTimeInHrs();
+        this.orderPickedUpTimeInHrs = Time.getInstance().getTimeInHrs();
     }
 }
