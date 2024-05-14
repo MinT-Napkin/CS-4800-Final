@@ -2,25 +2,24 @@ package meal;
 
 import service.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
     private Restaurant restaurantOfOrigin;
-    private Customer recievingCustomer; // incl. customer name & diet restriction
+    private Customer receivingCustomer; // incl. customer name & diet restriction
     private Driver driver;
 
-    private int orderCreationTimeInHrs; // something abt customer w/ this, not sure if implementaiton is correct
-    private int orderPickedUpTimeInHrs;
-    private int orderDeliveredTimeInHrs;
+    private LocalDateTime orderCreationTime;
+    private LocalDateTime orderPickupTime;
+    private LocalDateTime orderDeliveredTime;
 
-    public Order(Restaurant fromRestaurant, Customer fromCusomter)
+    public Order(Restaurant fromRestaurant, Customer fromCustomer, LocalDateTime orderCreationTime)
     {
         this.restaurantOfOrigin = fromRestaurant;
-        this.recievingCustomer = fromCusomter;
-        this.orderCreationTimeInHrs = this.orderPickedUpTimeInHrs = Time.getInstance().getTimeInHrs();
-
-        this.driver = CPPFoodDelivery.getInstance().findDriverByCounty(this.recievingCustomer.getCounty());
+        this.receivingCustomer = fromCustomer;
+        this.orderCreationTime = orderCreationTime;
     }
 
     private List<FoodItem> items = new ArrayList<>();
@@ -41,13 +40,14 @@ public class Order {
         return items;
     }
 
-    public void pickUpOrder()
+    public void pickUpOrder(Driver driver, LocalDateTime pickupTime)
     {
-        this.orderPickedUpTimeInHrs = Time.getInstance().getTimeInHrs();
+        this.driver = driver;
+        this.orderPickupTime = pickupTime;
     }
 
-    public void deliverOrder()
+    public void deliverOrder(LocalDateTime deliveryTime)
     {
-        this.orderPickedUpTimeInHrs = Time.getInstance().getTimeInHrs();
+        this.orderDeliveredTime = deliveryTime;
     }
 }
