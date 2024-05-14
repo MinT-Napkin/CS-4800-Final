@@ -1,20 +1,26 @@
 package service;
 
+import meal.Order;
+
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 public class Restaurant
 {
     private String name;
     private String address;
     private String county;
-    private int openingHour;
-    private int closingHour;
+    private LocalTime openingHour;
+    private LocalTime closingHour;
     private String cuisineType;
     private FoodMenu menu;
 
     public Restaurant(String name,
                       String address,
                       String county,
-                      int openingHour,
-                      int closingHour,
+                      LocalTime openingHour,
+                      LocalTime closingHour,
                       String cuisineType,
                       FoodMenu menu)
     {
@@ -39,11 +45,11 @@ public class Restaurant
         return county;
     }
 
-    public int getOpeningHour() {
+    public LocalTime getOpeningHour() {
         return openingHour;
     }
 
-    public int getClosingHour() {
+    public LocalTime getClosingHour() {
         return closingHour;
     }
 
@@ -53,5 +59,14 @@ public class Restaurant
 
     public FoodMenu getMenu() {
         return menu;
+    }
+
+    public Order createOrder(Customer customer, LocalDateTime orderCreationTime) throws DateTimeException {
+        LocalTime orderCreationTimeOnly = orderCreationTime.toLocalTime();
+        if (orderCreationTimeOnly.isBefore(openingHour) || orderCreationTimeOnly.isAfter(closingHour)) {
+            throw new DateTimeException(String.format("Customer \"%s\" tried to order from restaurant \"%s\" outside of operating hours. Try again later!", customer.getName(), this.getName()));
+        }
+
+        return new Order(this, customer, orderCreationTime);
     }
 }
