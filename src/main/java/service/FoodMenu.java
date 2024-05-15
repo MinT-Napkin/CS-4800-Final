@@ -13,6 +13,11 @@ public class FoodMenu
         this.mealList = mealList;
     }
 
+    public void addMeal(Meal meal)
+    {
+        this.mealList.addFirst(meal);
+    }
+
     public Meal createCustomerMeal(){
         return null;
     }
