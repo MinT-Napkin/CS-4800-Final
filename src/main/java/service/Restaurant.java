@@ -1,10 +1,13 @@
 package service;
 
+import customer.DietPlan;
+import meal.Meal;
 import meal.Order;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class Restaurant
 {
@@ -30,7 +33,18 @@ public class Restaurant
         this.openingHour = openingHour;
         this.closingHour = closingHour;
         this.cuisineType = cuisineType;
-        this.menu = menu;
+
+        if (menu == null)
+        {
+            menu = new FoodMenu( new ArrayList<Meal>());
+            menu.addMeal(new Meal(new Customer(null, null, null, DietPlan.NO_RESTRICTION)));
+            menu.addMeal(new Meal(new Customer(null, null, null, DietPlan.PALEO)));
+            menu.addMeal(new Meal(new Customer(null, null, null, DietPlan.VEGAN)));
+            menu.addMeal(new Meal(new Customer(null, null, null, DietPlan.NUT_ALLERGY)));
+
+        }else{
+            this.menu = menu;
+        }
     }
 
     public String getName() {
