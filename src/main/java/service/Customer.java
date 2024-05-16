@@ -39,9 +39,7 @@ public class Customer {
         return dietPlan;
     }
 
-    public Order createOrder(Restaurant restaurant, LocalTime orderCreationTime) throws DateTimeException {
-        Order toReturn = restaurant.createOrder(this, orderCreationTime);
-        toReturn.deliverOrder(LocalTime.of(8,0));
-        return toReturn;
+    public Order createOrder(Restaurant restaurant, LocalDateTime orderCreationTime) throws DateTimeException {
+        return restaurant.createOrder(this, orderCreationTime);
     }
 }

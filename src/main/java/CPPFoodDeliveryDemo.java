@@ -2,7 +2,6 @@ import customer.*;
 import meal.*;
 import service.*;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +13,10 @@ public class CPPFoodDeliveryDemo {
 
         //4 restaurants
         //TODO: create 4 separate food menus for restaurants
-        Restaurant restaurant1 = new Restaurant("Phoholic", "00001 Poppy Dr", "Orange County", LocalTime.of(8,0), LocalTime.of(16,0), "Vietnamese", null);
-        Restaurant restaurant2 = new Restaurant("Yummy Yummy", "00002 Yummy Dr", "San Bernardino County", LocalTime.of(8,0), LocalTime.of(16,0), "American", null);
-        Restaurant restaurant3 = new Restaurant("My Thai Kitchen", "00003 Topper Dr", "LA County", LocalTime.of(16,0), LocalTime.of(0,0), "Thai", null);
-        Restaurant restaurant4 = new Restaurant("Twin Panda Bowl", "00004 Bowl Dr", "Orange County", LocalTime.of(12,0), LocalTime.of(20,0), "Chinese", null);
+        Restaurant restaurant1 = new Restaurant("Phoholic", "00001 Poppy Dr", "Orange County", 8, 4, "Vietnamese", null);
+        Restaurant restaurant2 = new Restaurant("Yummy Yummy", "00002 Yummy Dr", "San Bernardino County", 8, 4, "American", null);
+        Restaurant restaurant3 = new Restaurant("My Thai Kitchen", "00003 Topper Dr", "LA County", 4, 12, "Thai", null);
+        Restaurant restaurant4 = new Restaurant("Twin Panda Bowl", "00004 Bowl Dr", "Orange County", 12, 8, "Chinese", null);
 
         Driver driver1 = new Driver("Adam", "10001 Orange St", "Orange County");
         Driver driver2 = new Driver("Bob", "10002 Orange St", "Orange County");

@@ -40,18 +40,6 @@ public class CPPFoodDelivery
         drivers.add(driver);
     }
 
-    public boolean isRegisteredRestaurant(Restaurant restaurant) {
-        return restaurants.contains(restaurant);
-    }
-
-    public boolean isRegisteredCustomer(Customer customer) {
-        return customers.contains(customer);
-    }
-
-    public boolean isRegisteredDriver(Driver driver) {
-        return drivers.contains(driver);
-    }
-
     public Driver findDriverByCounty(String county)
     {
         Driver toReturn = null;
