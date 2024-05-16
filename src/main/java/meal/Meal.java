@@ -10,6 +10,8 @@ public class Meal implements FoodItem {
     private Macronutrient protein;
     private Macronutrient fat;
 
+    private DietPlan diet;
+
     public Meal(Customer customer)
     {
         MacronutrientFactory carbsFactory = CarbsFactory.getInstance();
@@ -19,6 +21,8 @@ public class Meal implements FoodItem {
         carb = carbsFactory.returnValidMacronutrient(customer);
         protein = proteinsFactory.returnValidMacronutrient(customer);
         fat = fatsFactory.returnValidMacronutrient(customer);
+
+        this.diet = customer.getDietPlan();
     }
 
     public Meal(double basePrice) {
@@ -40,5 +44,9 @@ public class Meal implements FoodItem {
     @Override
     public double getPrice() {
         return basePrice;
+    }
+
+    public DietPlan getDiet() {
+        return diet;
     }
 }
