@@ -3,6 +3,7 @@ package meal;
 import service.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +12,11 @@ public class Order {
     private Customer receivingCustomer; // incl. customer name & diet restriction
     private Driver driver;
 
-    private LocalDateTime orderCreationTime;
-    private LocalDateTime orderPickupTime;
-    private LocalDateTime orderDeliveredTime;
+    private LocalTime orderCreationTime;
+    private LocalTime orderPickupTime;
+    private LocalTime orderDeliveredTime;
 
-    public Order(Restaurant fromRestaurant, Customer fromCustomer, LocalDateTime orderCreationTime)
+    public Order(Restaurant fromRestaurant, Customer fromCustomer, LocalTime orderCreationTime)
     {
         this.restaurantOfOrigin = fromRestaurant;
         this.receivingCustomer = fromCustomer;
@@ -40,13 +41,13 @@ public class Order {
         return items;
     }
 
-    public void pickUpOrder(Driver driver, LocalDateTime pickupTime)
+    public void pickUpOrder(Driver driver, LocalTime pickupTime)
     {
         this.driver = driver;
         this.orderPickupTime = pickupTime;
     }
 
-    public void deliverOrder(LocalDateTime deliveryTime)
+    public void deliverOrder(LocalTime deliveryTime)
     {
         this.orderDeliveredTime = deliveryTime;
     }
