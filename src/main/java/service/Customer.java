@@ -40,6 +40,8 @@ public class Customer {
     }
 
     public Order createOrder(Restaurant restaurant, LocalDateTime orderCreationTime) throws DateTimeException {
-        return restaurant.createOrder(this, orderCreationTime);
+        Order toReturn = restaurant.createOrder(this, orderCreationTime);
+        toReturn.deliverOrder(orderCreationTime.plusHours(1));
+        return toReturn;
     }
 }

@@ -55,7 +55,7 @@ public class Restaurant
         return address;
     }
 
-    public String getCountry() {
+    public String getCounty() {
         return county;
     }
 
@@ -81,6 +81,10 @@ public class Restaurant
             throw new DateTimeException(String.format("Customer \"%s\" tried to order from restaurant \"%s\" outside of operating hours. Try again later!", customer.getName(), this.getName()));
         }
 
-        return new Order(this, customer, orderCreationTime);
+        Order toReturn = new Order(this, customer, orderCreationTime);
+
+        toReturn.pickUpOrder(orderCreationTime.plusHours(1));
+
+        return toReturn;
     }
 }
