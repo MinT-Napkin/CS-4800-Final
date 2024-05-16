@@ -20,6 +20,7 @@ public class Order {
         this.restaurantOfOrigin = fromRestaurant;
         this.receivingCustomer = fromCustomer;
         this.orderCreationTime = orderCreationTime;
+        this.driver = CPPFoodDelivery.getInstance().findDriverByCounty(fromRestaurant.getCounty());
     }
 
     private List<FoodItem> items = new ArrayList<>();
