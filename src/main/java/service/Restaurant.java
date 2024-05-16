@@ -85,6 +85,15 @@ public class Restaurant
 
         toReturn.pickUpOrder(orderCreationTime.plusHours(1));
 
+        for (Meal meal : this.menu.getMealList())
+        {
+            if (meal.getDiet().equals(customer.getDietPlan()))
+            {
+                toReturn.addItem(meal);
+                break;
+            }
+        }
+
         return toReturn;
     }
 }
