@@ -83,8 +83,6 @@ public class Restaurant
 
         Order toReturn = new Order(this, customer, orderCreationTime);
 
-        toReturn.pickUpOrder(orderCreationTime.plusHours(1));
-
         for (Meal meal : this.menu.getMealList())
         {
             if (meal.getDiet().equals(customer.getDietPlan()))
@@ -93,6 +91,8 @@ public class Restaurant
                 break;
             }
         }
+
+        toReturn.pickUpOrder(orderCreationTime.plusHours(1));
 
         return toReturn;
     }
