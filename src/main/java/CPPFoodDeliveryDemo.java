@@ -2,16 +2,16 @@ import customer.*;
 import order.Order;
 import service.*;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class CPPFoodDeliveryDemo {
     public static void main(String[] args) {
 
-        //
+        // Singleton for CPPFoodDelivery platform
         CPPFoodDelivery cpp = CPPFoodDelivery.getInstance();
 
-        //4 restaurants
         //TODO: create 4 separate food menus for restaurants
         Restaurant restaurant1 = new Restaurant("Phoholic", "00001 Poppy Dr", "Orange County", LocalTime.of(8,0), LocalTime.of(16,0), "Vietnamese");
         Restaurant restaurant2 = new Restaurant("Yummy Yummy", "00002 Yummy Dr", "San Bernardino County", LocalTime.of(8,0), LocalTime.of(16,0), "American");
@@ -40,12 +40,17 @@ public class CPPFoodDeliveryDemo {
 
         cpp.registerRestaurant(restaurant1);
         cpp.registerRestaurant(restaurant2);
+        cpp.registerRestaurant(restaurant4);
 
         cpp.registerDriver(driver1);
         cpp.registerDriver(driver2);
+        cpp.registerDriver(driver3);
 
         cpp.registerCustomer(customer1);
         cpp.registerCustomer(customer2);
+        cpp.registerCustomer(customer3);
+        cpp.registerCustomer(customer4);
+        cpp.registerCustomer(customer5);
 
         restaurant1.viewMenu();
 
@@ -60,17 +65,31 @@ public class CPPFoodDeliveryDemo {
         driver1.deliverOrder(LocalDateTime.of(2024, 10, 10, 10, 10));
         System.out.println(order1);
 
-//        // out of range of operating hours
-//        customer1.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 7, 30));
-//
-//        // ordering while not registered
-//        customer10.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
+        try {
+            customer3.createOrder(restaurant3, LocalDateTime.of(2024, 10, 10, 7, 30));
+        } catch (Exception e) {
+            System.out.println("Showcasing customer trying to order from restaurant outside of operating hours!");
+            System.out.println(e.getMessage());
+            System.out.println();
+        }
 
-//        // ordering out of county
-//        cpp.registerCustomer(customer10);
-//        customer10.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
+        try {
+            customer10.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
+        } catch (Exception e) {
+            System.out.println("Showcasing an unregistered customer attempting to order!");
+            System.out.println(e.getMessage());
+            System.out.println();
+        }
 
-        Order order2 = customer1.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
+        try {
+            customer4.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
+        } catch (Exception e) {
+            System.out.println("Showcasing a customer ordering from a restaurant outside of their county!");
+            System.out.println(e.getMessage());
+            System.out.println();
+        }
+
+        Order order2 = customer5.createOrder(restaurant2, LocalDateTime.of(2024, 10, 10, 9, 30));
         customer1.addKetchupToCurrentItem(order2);
         customer1.addItem(order2);
         customer1.addMayoToCurrentItem(order2);
@@ -78,12 +97,21 @@ public class CPPFoodDeliveryDemo {
         customer1.addMustardToCurrentItem(order2);
         customer1.completeOrder(order2);
 
-//        // driver unregistered
-//        driver8.pickupOrder(order2, LocalDateTime.of(2024, 10, 10, 10, 0));
+        try {
+            driver8.pickupOrder(order2, LocalDateTime.of(2024, 10, 10, 10, 0));
+        } catch (Exception e) {
+            System.out.println("Showcasing an unregistered driver attempting to pick up an order!");
+            System.out.println(e.getMessage());
+            System.out.println();
+        }
 
-        // driver out of county
-        cpp.registerDriver(driver8);
-        driver8.pickupOrder(order2, LocalDateTime.of(2024, 10, 10, 10, 0));
+        try {
+            driver3.pickupOrder(order2, LocalDateTime.of(2024, 10, 10, 10, 0));
+        } catch (Exception e) {
+            System.out.println("Showcasing a registered driver trying to pick up an order outside their county!");
+            System.out.println(e.getMessage());
+            System.out.println();
+        }
 
         System.out.println(order2);
     }

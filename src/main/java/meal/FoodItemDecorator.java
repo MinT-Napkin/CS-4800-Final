@@ -15,7 +15,7 @@ abstract class FoodItemDecorator implements FoodItem {
         return decoratedFoodItem.getPrice() + toppingPrice;
     }
 
-    public String toString(){
-        return decoratedFoodItem.toString() + "\tTopping Price: " + toppingName + " ($" + toppingPrice + ")\n";
+    public String toString() {
+        return decoratedFoodItem.toString() + String.format("\tTopping Price: %s ($%.2f)\n", toppingName, toppingPrice);
     }
 }
