@@ -2,7 +2,7 @@ package service;
 
 import customer.DietPlan;
 import meal.Meal;
-import meal.Order;
+import order.Order;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
@@ -24,8 +24,7 @@ public class Restaurant
                       String county,
                       LocalTime openingHour,
                       LocalTime closingHour,
-                      String cuisineType,
-                      FoodMenu menu)
+                      String cuisineType)
     {
         this.name = name;
         this.address = address;
@@ -34,17 +33,12 @@ public class Restaurant
         this.closingHour = closingHour;
         this.cuisineType = cuisineType;
 
-        if (menu == null)
-        {
-            menu = new FoodMenu( new ArrayList<Meal>());
-            menu.addMeal(new Meal(new Customer(null, null, null, DietPlan.NO_RESTRICTION)));
-            menu.addMeal(new Meal(new Customer(null, null, null, DietPlan.PALEO)));
-            menu.addMeal(new Meal(new Customer(null, null, null, DietPlan.VEGAN)));
-            menu.addMeal(new Meal(new Customer(null, null, null, DietPlan.NUT_ALLERGY)));
+        menu = new FoodMenu( new ArrayList<Meal>());
+        menu.addMeal(new Meal(new Customer(null, null, null, DietPlan.NO_RESTRICTION)));
+        menu.addMeal(new Meal(new Customer(null, null, null, DietPlan.PALEO)));
+        menu.addMeal(new Meal(new Customer(null, null, null, DietPlan.VEGAN)));
+        menu.addMeal(new Meal(new Customer(null, null, null, DietPlan.NUT_ALLERGY)));
 
-        }else{
-            this.menu = menu;
-        }
     }
 
     public String getName() {
@@ -73,6 +67,13 @@ public class Restaurant
 
     public FoodMenu getMenu() {
         return menu;
+    }
+
+    public void viewMenu() {
+        System.out.println("Viewing " + name + "'s Menu:\n");
+        for (Meal meal : menu.getMealList()) {
+            System.out.println(meal);
+        }
     }
 
     public Order createOrder(Customer customer, LocalDateTime orderCreationTime) throws DateTimeException {

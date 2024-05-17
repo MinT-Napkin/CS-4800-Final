@@ -1,6 +1,6 @@
 package service;
 
-import meal.Order;
+import order.Order;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;

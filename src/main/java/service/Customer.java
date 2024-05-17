@@ -1,7 +1,7 @@
 package service;
 
 import customer.DietPlan;
-import meal.Order;
+import order.Order;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
@@ -39,6 +39,7 @@ public class Customer {
     }
 
     public Order createOrder(Restaurant restaurant, LocalDateTime orderCreationTime) throws DateTimeException {
+        System.out.println(name + " orders from " + restaurant.getName());
         return restaurant.createOrder(this, orderCreationTime);
     }
 }
