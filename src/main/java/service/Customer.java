@@ -38,6 +38,22 @@ public class Customer {
         return dietPlan;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public void setDietPlan(DietPlan dietPlan) {
+        this.dietPlan = dietPlan;
+    }
+
     public Order createOrder(Restaurant restaurant, LocalDateTime orderCreationTime) throws DateTimeException {
         Order order = new Order();
         order.createOrder(this, restaurant, orderCreationTime);

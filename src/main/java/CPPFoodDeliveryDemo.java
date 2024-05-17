@@ -60,28 +60,15 @@ public class CPPFoodDeliveryDemo {
         driver1.deliverOrder(LocalDateTime.of(2024, 10, 10, 10, 10));
         System.out.println(order1);
 
-//        // out of range of operating hours
-//        customer1.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 7, 30));
-//
-//        // ordering while not registered
-//        customer10.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
+        Order order2 = customer2.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
+        customer2.addKetchupToCurrentItem(order2);
+        customer2.addItem(order2);
+        customer2.addMayoToCurrentItem(order2);
+        customer2.addItem(order2);
+        customer2.addMustardToCurrentItem(order2);
+        customer2.completeOrder(order2);
 
-//        // ordering out of county
-//        cpp.registerCustomer(customer10);
-//        customer10.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
 
-        Order order2 = customer1.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
-        customer1.addKetchupToCurrentItem(order2);
-        customer1.addItem(order2);
-        customer1.addMayoToCurrentItem(order2);
-        customer1.addItem(order2);
-        customer1.addMustardToCurrentItem(order2);
-        customer1.completeOrder(order2);
-
-//        // driver unregistered
-//        driver8.pickupOrder(order2, LocalDateTime.of(2024, 10, 10, 10, 0));
-
-        // driver out of county
         cpp.registerDriver(driver8);
         driver8.pickupOrder(order2, LocalDateTime.of(2024, 10, 10, 10, 0));
 

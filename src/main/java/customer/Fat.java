@@ -44,7 +44,7 @@ public class Fat extends Macronutrient {
     }
 
     @Override
-    Macronutrient returnRandomMacronutrient() {
+    public Macronutrient returnRandomMacronutrient() {
         Random random = new Random();
         int index = random.nextInt(fatOptions.size());
         name = fatOptions.get(index);

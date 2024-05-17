@@ -3,5 +3,5 @@ package customer;
 public abstract class Macronutrient
 {
     public abstract String getName();
-    abstract Macronutrient returnRandomMacronutrient();
+    public abstract Macronutrient returnRandomMacronutrient();
 }
