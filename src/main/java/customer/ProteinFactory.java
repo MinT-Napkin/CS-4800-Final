@@ -16,21 +16,16 @@ public class ProteinFactory implements MacronutrientFactory {
 
     @Override
     public Macronutrient returnValidMacronutrient(Customer customer) {
-        switch(customer.getDietPlan())
-        {
-            case NO_RESTRICTION, NUT_ALLERGY:
-                return new Protein().returnRandomMacronutrient();
-            case PALEO:
-                return new Protein()
-                        .removeTofu()
-                        .returnRandomMacronutrient();
-            case VEGAN:
-                return new Protein()
-                        .removeFish()
-                        .removeChicken()
-                        .returnRandomMacronutrient();
-        }
-        return new Protein().returnRandomMacronutrient();
+        return switch (customer.getDietPlan()) {
+            case NO_RESTRICTION, NUT_ALLERGY -> new Protein().returnRandomMacronutrient();
+            case PALEO -> new Protein()
+                    .removeTofu()
+                    .returnRandomMacronutrient();
+            case VEGAN -> new Protein()
+                    .removeFish()
+                    .removeChicken()
+                    .returnRandomMacronutrient();
+        };
     }
 }
 

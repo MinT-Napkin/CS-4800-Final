@@ -15,7 +15,7 @@ public class FoodMenu
 
     public void addMeal(Meal meal)
     {
-        this.mealList.addFirst(meal);
+        this.mealList.add(meal);
     }
 
     public Meal createCustomerMeal(){

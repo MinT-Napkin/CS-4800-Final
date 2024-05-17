@@ -16,25 +16,19 @@ public class CarbsFactory implements MacronutrientFactory {
     }
 
     public Macronutrient returnValidMacronutrient(Customer customer) {
-        switch(customer.getDietPlan())
-        {
-            case NO_RESTRICTION:
-                return new Carb().returnRandomMacronutrient();
-            case PALEO:
-                return new Carb()
-                        .removeCheese()
-                        .removeBread()
-                        .removeLentils()
-                        .returnRandomMacronutrient();
-            case VEGAN:
-                return new Carb()
-                        .removeCheese()
-                        .returnRandomMacronutrient();
-            case NUT_ALLERGY:
-                return new Carb()
-                        .removePistachio()
-                        .returnRandomMacronutrient();
-        }
-        return new Carb().returnRandomMacronutrient();
+        return switch (customer.getDietPlan()) {
+            case NO_RESTRICTION -> new Carb().returnRandomMacronutrient();
+            case PALEO -> new Carb()
+                    .removeCheese()
+                    .removeBread()
+                    .removeLentils()
+                    .returnRandomMacronutrient();
+            case VEGAN -> new Carb()
+                    .removeCheese()
+                    .returnRandomMacronutrient();
+            case NUT_ALLERGY -> new Carb()
+                    .removePistachio()
+                    .returnRandomMacronutrient();
+        };
     }
 }
