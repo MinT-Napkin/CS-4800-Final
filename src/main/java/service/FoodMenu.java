@@ -22,18 +22,6 @@ public class FoodMenu
         return null;
     }
 
-    public void addTopping1(Meal meal){
-
-    }
-
-    public void addTopping2(Meal meal){
-
-    }
-
-    public void addTopping3(Meal meal){
-
-    }
-
     public List<Meal> getMealList() {
         return mealList;
     }
