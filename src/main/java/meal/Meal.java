@@ -3,6 +3,8 @@ package meal;
 import customer.*;
 import service.Customer;
 
+import java.util.Random;
+
 public class Meal implements FoodItem {
 
     private double basePrice;
@@ -23,6 +25,14 @@ public class Meal implements FoodItem {
         fat = fatsFactory.returnValidMacronutrient(customer);
 
         this.diet = customer.getDietPlan();
+        this.basePrice = generateRandomPrice();
+    }
+
+    private double generateRandomPrice() {
+        Random random = new Random();
+        int minPrice = 3;
+        int maxPrice = 20;
+        return minPrice + random.nextInt(maxPrice - minPrice + 1);
     }
 
     public Meal(double basePrice) {
@@ -48,5 +58,17 @@ public class Meal implements FoodItem {
 
     public DietPlan getDiet() {
         return diet;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Meal Details:\n");
+        sb.append("\tBase Price: $").append(basePrice).append("\n");
+        sb.append("\tCarbohydrates: ").append(carb.getName()).append("\n");
+        sb.append("\tProtein: ").append(protein.getName()).append("\n");
+        sb.append("\tFat: ").append(fat.getName()).append("\n");
+        sb.append("\tDiet Plan: ").append(diet).append("\n");
+        return sb.toString();
     }
 }

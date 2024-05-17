@@ -1,10 +1,9 @@
 import customer.*;
-import meal.*;
+import order.Order;
 import service.*;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CPPFoodDeliveryDemo {
     public static void main(String[] args) {
@@ -14,10 +13,10 @@ public class CPPFoodDeliveryDemo {
 
         //4 restaurants
         //TODO: create 4 separate food menus for restaurants
-        Restaurant restaurant1 = new Restaurant("Phoholic", "00001 Poppy Dr", "Orange County", LocalTime.of(8,0), LocalTime.of(16,0), "Vietnamese", null);
-        Restaurant restaurant2 = new Restaurant("Yummy Yummy", "00002 Yummy Dr", "San Bernardino County", LocalTime.of(8,0), LocalTime.of(16,0), "American", null);
-        Restaurant restaurant3 = new Restaurant("My Thai Kitchen", "00003 Topper Dr", "LA County", LocalTime.of(16,0), LocalTime.of(0,0), "Thai", null);
-        Restaurant restaurant4 = new Restaurant("Twin Panda Bowl", "00004 Bowl Dr", "Orange County", LocalTime.of(12,0), LocalTime.of(20,0), "Chinese", null);
+        Restaurant restaurant1 = new Restaurant("Phoholic", "00001 Poppy Dr", "Orange County", LocalTime.of(8,0), LocalTime.of(16,0), "Vietnamese");
+        Restaurant restaurant2 = new Restaurant("Yummy Yummy", "00002 Yummy Dr", "San Bernardino County", LocalTime.of(8,0), LocalTime.of(16,0), "American");
+        Restaurant restaurant3 = new Restaurant("My Thai Kitchen", "00003 Topper Dr", "LA County", LocalTime.of(16,0), LocalTime.of(0,0), "Thai");
+        Restaurant restaurant4 = new Restaurant("Twin Panda Bowl", "00004 Bowl Dr", "Orange County", LocalTime.of(12,0), LocalTime.of(20,0), "Chinese");
 
         Driver driver1 = new Driver("Adam", "10001 Orange St", "Orange County");
         Driver driver2 = new Driver("Bob", "10002 Orange St", "Orange County");
@@ -48,6 +47,44 @@ public class CPPFoodDeliveryDemo {
         cpp.registerCustomer(customer1);
         cpp.registerCustomer(customer2);
 
-        cpp.printRegistered();
+        restaurant1.viewMenu();
+
+        Order order1 = customer1.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
+        customer1.addKetchupToCurrentItem(order1);
+        customer1.addItem(order1);
+        customer1.addMayoToCurrentItem(order1);
+        customer1.addItem(order1);
+        customer1.addMustardToCurrentItem(order1);
+        customer1.completeOrder(order1);
+        driver1.pickupOrder(order1, LocalDateTime.of(2024, 10, 10, 10, 0));
+        driver1.deliverOrder(LocalDateTime.of(2024, 10, 10, 10, 10));
+        System.out.println(order1);
+
+//        // out of range of operating hours
+//        customer1.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 7, 30));
+//
+//        // ordering while not registered
+//        customer10.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
+
+//        // ordering out of county
+//        cpp.registerCustomer(customer10);
+//        customer10.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
+
+        Order order2 = customer1.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
+        customer1.addKetchupToCurrentItem(order2);
+        customer1.addItem(order2);
+        customer1.addMayoToCurrentItem(order2);
+        customer1.addItem(order2);
+        customer1.addMustardToCurrentItem(order2);
+        customer1.completeOrder(order2);
+
+//        // driver unregistered
+//        driver8.pickupOrder(order2, LocalDateTime.of(2024, 10, 10, 10, 0));
+
+        // driver out of county
+        cpp.registerDriver(driver8);
+        driver8.pickupOrder(order2, LocalDateTime.of(2024, 10, 10, 10, 0));
+
+        System.out.println(order2);
     }
 }
