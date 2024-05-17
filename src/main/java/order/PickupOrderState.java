@@ -1,6 +1,7 @@
 package order;
 
 import meal.FoodItem;
+import service.CPPFoodDelivery;
 import service.Customer;
 import service.Driver;
 import service.Restaurant;
@@ -43,8 +44,18 @@ public class PickupOrderState implements StateOfOrder
 
     @Override
     public void pickUpOrder(Order order, Driver driver, LocalDateTime pickupTime) {
+        CPPFoodDelivery cppFoodDelivery = CPPFoodDelivery.getInstance();
         LocalTime pickupTimeOnly = pickupTime.toLocalTime();
         Restaurant restaurant = order.getRestaurant();
+
+        if (driver == null || !cppFoodDelivery.isRegisteredDriver(driver)) {
+            throw new IllegalArgumentException("Driver is not registered.");
+        }
+
+        if (!driver.getOperatingCounty().equals(restaurant.getCounty())) {
+            throw new IllegalArgumentException("Driver and restaurant are not in the same county.");
+        }
+
         if (pickupTime.isBefore(order.getCreationTime()) || pickupTimeOnly.isAfter(restaurant.getClosingHour())) {
             throw new DateTimeException(String.format("""
                     Invalid time to pick up order for Driver "%s"!

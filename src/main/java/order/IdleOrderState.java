@@ -1,18 +1,27 @@
 package order;
 
+import service.CPPFoodDelivery;
 import service.Customer;
 import service.Driver;
 import service.Restaurant;
 
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class IdleOrderState implements StateOfOrder{
     @Override
     public void createOrder(Order order, Customer customer, Restaurant restaurant, LocalDateTime orderCreationTime) {
-        //TODO verify if customer/restuarant are registered
-        //TODO verify if customer/restaurant are in same county
+        CPPFoodDelivery cppFoodDelivery = CPPFoodDelivery.getInstance();
+
+        if (!cppFoodDelivery.isRegisteredCustomer(customer)) {
+            throw new IllegalArgumentException("Customer is not registered.");
+        }
+        if (!cppFoodDelivery.isRegisteredRestaurant(restaurant)) {
+            throw new IllegalArgumentException("Restaurant is not registered.");
+        }
+        if (!customer.getCounty().equals(restaurant.getCounty())) {
+            throw new IllegalArgumentException("Customer and restaurant are not in the same county.");
+        }
+
         order.setReceivingCustomer(customer);
         order.setRestaurantOfOrigin(restaurant);
         order.setOrderCreationTime(orderCreationTime);
@@ -24,22 +33,22 @@ public class IdleOrderState implements StateOfOrder{
 
     @Override
     public void addKetchupToCurrentItem(Order order, int currentItemIndex) {
-
+        // do nothing
     }
 
     @Override
     public void addMayoToCurrentItem(Order order, int currentItemIndex) {
-
+        // do nothing
     }
 
     @Override
     public void addMustardToCurrentItem(Order order, int currentItemIndex) {
-
+        // do nothing
     }
 
     @Override
     public void addAnotherItem(Order order) {
-
+        // do nothing
     }
 
     @Override
