@@ -47,9 +47,15 @@ public class CPPFoodDeliveryDemo {
         cpp.registerCustomer(customer1);
         cpp.registerCustomer(customer2);
 
-        // in range operating hours
         restaurant1.viewMenu();
+
         Order order = customer1.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
+        customer1.addKetchupToCurrentItem(order);
+        customer1.addItem(order);
+        customer1.addMayoToCurrentItem(order);
+        customer1.addItem(order);
+        customer1.addMustardToCurrentItem(order);
+        customer1.completeOrder(order);
         driver1.pickupOrder(order, LocalDateTime.of(2024, 10, 10, 10, 0));
         driver1.deliverOrder(LocalDateTime.of(2024, 10, 10, 10, 10));
         System.out.println(order);

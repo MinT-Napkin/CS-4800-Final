@@ -64,7 +64,7 @@ public class Meal implements FoodItem {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Meal Details:\n");
-        sb.append("\tBase Price: ").append(basePrice).append("\n");
+        sb.append("\tBase Price: $").append(basePrice).append("\n");
         sb.append("\tCarbohydrates: ").append(carb.getName()).append("\n");
         sb.append("\tProtein: ").append(protein.getName()).append("\n");
         sb.append("\tFat: ").append(fat.getName()).append("\n");

@@ -76,13 +76,11 @@ public class Restaurant
         }
     }
 
-    public Order createOrder(Customer customer, LocalDateTime orderCreationTime) throws DateTimeException {
-        LocalTime orderCreationTimeOnly = orderCreationTime.toLocalTime();
+    public Order addValidMealToOrder(Order order, Customer customer) throws DateTimeException {
+        LocalTime orderCreationTimeOnly = order.getCreationTime().toLocalTime();
         if (orderCreationTimeOnly.isBefore(openingHour) || orderCreationTimeOnly.isAfter(closingHour)) {
             throw new DateTimeException(String.format("Customer \"%s\" tried to order from restaurant \"%s\" outside of operating hours. Try again later!", customer.getName(), this.getName()));
         }
-
-        Order order = new Order(this, customer, orderCreationTime);
 
         for (Meal meal : this.menu.getMealList())
         {

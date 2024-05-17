@@ -39,7 +39,30 @@ public class Customer {
     }
 
     public Order createOrder(Restaurant restaurant, LocalDateTime orderCreationTime) throws DateTimeException {
-        System.out.println(name + " orders from " + restaurant.getName());
-        return restaurant.createOrder(this, orderCreationTime);
+        Order order = new Order();
+        order.createOrder(this, restaurant, orderCreationTime);
+        return order;
+    }
+
+    public void addKetchupToCurrentItem(Order order)
+    {
+        order.addKetchupToCurrentItem();
+    }
+
+    public void addMayoToCurrentItem(Order order)
+    {
+        order.addMayoToCurrentItem();
+    }
+
+    public void addMustardToCurrentItem(Order order)
+    {
+        order.addMustardToCurrentItem();
+    }
+
+    public void addItem(Order order) { order.addAnotherItem(); }
+
+    public void completeOrder(Order order)
+    {
+        order.completeOrder();
     }
 }

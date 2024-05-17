@@ -17,6 +17,11 @@ public class Order {
     private LocalDateTime orderDeliveredTime;
     private StateOfOrder state;
 
+    public Order()
+    {
+        this.state = new IdleOrderState();
+    }
+
     public Order(Restaurant fromRestaurant, Customer fromCustomer, LocalDateTime orderCreationTime)
     {
         this.restaurantOfOrigin = fromRestaurant;
@@ -101,25 +106,27 @@ public class Order {
         this.orderDeliveredTime = orderDeliveredTime;
     }
 
-    public void createOrder(Customer customer)
+    public void createOrder(Customer customer, Restaurant restaurant, LocalDateTime orderCreationTime)
     {
-        state.createOrder(this, customer);
+        state.createOrder(this, customer, restaurant, orderCreationTime);
     }
 
-    public void addKetchup()
+    public void addKetchupToCurrentItem()
     {
-        state.addKetchup(this);
+        state.addKetchupToCurrentItem(this, items.size()-1);
     }
 
-    public void addMayo()
+    public void addMayoToCurrentItem()
     {
-        state.addMayo(this);
+        state.addMayoToCurrentItem(this, items.size()-1);
     }
 
-    public void addMustard()
+    public void addMustardToCurrentItem()
     {
-        state.addMustard(this);
+        state.addMustardToCurrentItem(this, items.size()-1);
     }
+
+    public void addAnotherItem() { state.addAnotherItem(this);}
 
     public void completeOrder()
     {
@@ -145,15 +152,19 @@ public class Order {
         sb.append("Order Details:\n");
         sb.append("Restaurant: ").append(restaurantOfOrigin.getName()).append("\n");
         sb.append("Customer: ").append(receivingCustomer.getName()).append("\n");
-        sb.append("Driver: ").append(driver.getName()).append("\n");
+        if (driver != null) {
+            sb.append("Driver: ").append(driver.getName()).append("\n");
+        } else {
+            sb.append("Driver: Not assigned\n");
+        }
         sb.append("Order Creation Time: ").append(orderCreationTime).append("\n");
-        sb.append("Order Pickup Time: ").append(orderPickupTime).append("\n");
-        sb.append("Order Delivery Time: ").append(orderDeliveredTime).append("\n");
+        sb.append("Order Pickup Time: ").append(orderPickupTime != null ? orderPickupTime : "Not picked up yet").append("\n");
+        sb.append("Order Delivery Time: ").append(orderDeliveredTime != null ? orderDeliveredTime : "Not delivered yet").append("\n");
         sb.append("Items:\n");
         for (FoodItem item : items) {
             sb.append("  - ").append(item).append("\n");
         }
-        sb.append("Total Cost: ").append(getTotalCost()).append("\n");
+        sb.append("Total Cost: $").append(String.format("%.2f", getTotalCost())).append("\n");
         return sb.toString();
     }
 }
