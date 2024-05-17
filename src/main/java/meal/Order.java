@@ -10,7 +10,7 @@ public class Order {
     private Restaurant restaurantOfOrigin;
     private Customer receivingCustomer; // incl. customer name & diet restriction
     private Driver driver;
-
+    private List<FoodItem> items = new ArrayList<>();
     private LocalDateTime orderCreationTime;
     private LocalDateTime orderPickupTime;
     private LocalDateTime orderDeliveredTime;
@@ -20,10 +20,8 @@ public class Order {
         this.restaurantOfOrigin = fromRestaurant;
         this.receivingCustomer = fromCustomer;
         this.orderCreationTime = orderCreationTime;
-        this.driver = CPPFoodDelivery.getInstance().findDriverByCounty(fromRestaurant.getCounty());
     }
 
-    private List<FoodItem> items = new ArrayList<>();
 
     public void addItem(FoodItem item) {
         items.add(item);
@@ -39,6 +37,30 @@ public class Order {
 
     public List<FoodItem> getItems() {
         return items;
+    }
+
+    public Customer getCustomer() {
+        return receivingCustomer;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurantOfOrigin;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public LocalDateTime getCreationTime() {
+        return orderCreationTime;
+    }
+
+    public LocalDateTime getPickupTime() {
+        return orderPickupTime;
+    }
+
+    public LocalDateTime getOrderDeliveryTime() {
+        return orderDeliveredTime;
     }
 
     public void pickUpOrder(Driver driver, LocalDateTime pickupTime)

@@ -81,19 +81,17 @@ public class Restaurant
             throw new DateTimeException(String.format("Customer \"%s\" tried to order from restaurant \"%s\" outside of operating hours. Try again later!", customer.getName(), this.getName()));
         }
 
-        Order toReturn = new Order(this, customer, orderCreationTime);
+        Order order = new Order(this, customer, orderCreationTime);
 
         for (Meal meal : this.menu.getMealList())
         {
             if (meal.getDiet().equals(customer.getDietPlan()))
             {
-                toReturn.addItem(meal);
+                order.addItem(meal);
                 break;
             }
         }
 
-        toReturn.pickUpOrder(orderCreationTime.plusHours(1));
-
-        return toReturn;
+        return order;
     }
 }

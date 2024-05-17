@@ -18,24 +18,18 @@ public class FatsFactory implements MacronutrientFactory {
 
     @Override
     public Macronutrient returnValidMacronutrient(Customer customer) {
-        switch(customer.getDietPlan())
-        {
-            case NO_RESTRICTION:
-                return new Fat().returnRandomMacronutrient();
-            case PALEO:
-                return new Fat()
-                        .removeSourCream()
-                        .returnRandomMacronutrient();
-            case VEGAN:
-                return new Fat()
-                        .removeSourCream()
-                        .removeTuna()
-                        .returnRandomMacronutrient();
-            case NUT_ALLERGY:
-                return new Fat()
-                        .removePeanuts()
-                        .returnRandomMacronutrient();
-        }
-        return new Fat().returnRandomMacronutrient();
+        return switch (customer.getDietPlan()) {
+            case NO_RESTRICTION -> new Fat().returnRandomMacronutrient();
+            case PALEO -> new Fat()
+                    .removeSourCream()
+                    .returnRandomMacronutrient();
+            case VEGAN -> new Fat()
+                    .removeSourCream()
+                    .removeTuna()
+                    .returnRandomMacronutrient();
+            case NUT_ALLERGY -> new Fat()
+                    .removePeanuts()
+                    .returnRandomMacronutrient();
+        };
     }
 }
