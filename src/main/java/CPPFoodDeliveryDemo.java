@@ -8,11 +8,9 @@ import java.time.LocalTime;
 
 public class CPPFoodDeliveryDemo {
     public static void main(String[] args) {
-
-        // Singleton for CPPFoodDelivery platform
+        
         CPPFoodDelivery cpp = CPPFoodDelivery.getInstance();
 
-        //TODO: create 4 separate food menus for restaurants
         Restaurant restaurant1 = new Restaurant("Phoholic", "00001 Poppy Dr", "Orange County", LocalTime.of(8,0), LocalTime.of(16,0), "Vietnamese");
         Restaurant restaurant2 = new Restaurant("Yummy Yummy", "00002 Yummy Dr", "San Bernardino County", LocalTime.of(8,0), LocalTime.of(16,0), "American");
         Restaurant restaurant3 = new Restaurant("My Thai Kitchen", "00003 Topper Dr", "LA County", LocalTime.of(16,0), LocalTime.of(0,0), "Thai");
