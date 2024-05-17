@@ -49,22 +49,42 @@ public class CPPFoodDeliveryDemo {
 
         restaurant1.viewMenu();
 
-        Order order = customer1.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
-        customer1.addKetchupToCurrentItem(order);
-        customer1.addItem(order);
-        customer1.addMayoToCurrentItem(order);
-        customer1.addItem(order);
-        customer1.addMustardToCurrentItem(order);
-        customer1.completeOrder(order);
-        driver1.pickupOrder(order, LocalDateTime.of(2024, 10, 10, 10, 0));
+        Order order1 = customer1.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
+        customer1.addKetchupToCurrentItem(order1);
+        customer1.addItem(order1);
+        customer1.addMayoToCurrentItem(order1);
+        customer1.addItem(order1);
+        customer1.addMustardToCurrentItem(order1);
+        customer1.completeOrder(order1);
+        driver1.pickupOrder(order1, LocalDateTime.of(2024, 10, 10, 10, 0));
         driver1.deliverOrder(LocalDateTime.of(2024, 10, 10, 10, 10));
-        System.out.println(order);
+        System.out.println(order1);
 
-        // out of range of operating hours
-        customer1.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 7, 30));
+//        // out of range of operating hours
+//        customer1.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 7, 30));
+//
+//        // ordering while not registered
+//        customer10.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
 
-        // ordering out of county
+//        // ordering out of county
+//        cpp.registerCustomer(customer10);
+//        customer10.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
 
-        // ordering while not registered
+        Order order2 = customer1.createOrder(restaurant1, LocalDateTime.of(2024, 10, 10, 9, 30));
+        customer1.addKetchupToCurrentItem(order2);
+        customer1.addItem(order2);
+        customer1.addMayoToCurrentItem(order2);
+        customer1.addItem(order2);
+        customer1.addMustardToCurrentItem(order2);
+        customer1.completeOrder(order2);
+
+//        // driver unregistered
+//        driver8.pickupOrder(order2, LocalDateTime.of(2024, 10, 10, 10, 0));
+
+        // driver out of county
+        cpp.registerDriver(driver8);
+        driver8.pickupOrder(order2, LocalDateTime.of(2024, 10, 10, 10, 0));
+
+        System.out.println(order2);
     }
 }
